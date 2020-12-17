@@ -1,4 +1,4 @@
-FROM nginx:1.19.5 AS builder
+FROM nginx:1.19.6 AS builder
 
 RUN apt update \
     && apt install -y curl
@@ -16,7 +16,7 @@ RUN apt install -y build-essential \
     && make \
     && make install
 
-FROM nginx:1.19.5
+FROM nginx:1.19.6
 
 COPY --from=builder /usr/local/nginx/modules/*.so /etc/nginx/modules/
 
